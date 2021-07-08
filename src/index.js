@@ -37,7 +37,7 @@ app.get("/browser/:name", async (req, res) => {
     // const data = await page.screenshot({
     //   type: "png"
     // })
-    const data = page.content();
+    const data = await page.content();
     await browser.close()
     //res.contentType("image/png")
     res.contentType("text/html")
