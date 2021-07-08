@@ -34,11 +34,13 @@ app.get("/browser/:name", async (req, res) => {
     if (req.query.timeout) {
       await page.waitForTimeout(parseInt(req.query.timeout, 10))
     }
-    const data = await page.screenshot({
-      type: "png"
-    })
+    // const data = await page.screenshot({
+    //   type: "png"
+    // })
+    const data = page.content();
     await browser.close()
-    res.contentType("image/png")
+    //res.contentType("image/png")
+    res.contentType("text/html")
     res.set("Content-Disposition", "inline;");
     res.send(data)
   } catch (err) {
