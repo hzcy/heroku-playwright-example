@@ -55,7 +55,7 @@ app.get("/test/:name", async (req, res) => {
     return res.status(500).send(`invalid browser name (${browserName})!`)
   }
   const url =  "https://ide.goorm.io/"
-  const waitUntil = req.query.waitUntil || "load"
+ // const waitUntil = req.query.waitUntil || "load"
   const width = req.query.width ? parseInt(req.query.width, 10) : 1920
   const height = req.query.height ? parseInt(req.query.height, 10) : 1080
   console.log(`Incoming request for browser '${browserName}' and URL '${url}'`)
@@ -70,13 +70,10 @@ app.get("/test/:name", async (req, res) => {
         height
       }
     })
-    await page.goto(url, {
-      timeout: 10 * 1000,
-      waitUntil
-    })
-    if (req.query.timeout) {
-      await page.waitForTimeout(parseInt(req.query.timeout, 10))
-    }
+    await page.goto('https://ide.goorm.io/');
+    // if (req.query.timeout) {
+    //   await page.waitForTimeout(parseInt(req.query.timeout, 10))
+    // }
     //
     await page.click("text=Sign In");
     await page.click("#emailInput");
